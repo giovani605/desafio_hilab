@@ -3,6 +3,7 @@ package com.example.desafio.util;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.data.crossstore.ChangeSetPersister.NotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -18,6 +19,9 @@ public class RestExceptionHandler {
         if (ex instanceof NullPointerException) {
             error.setMensagem("Json mal formado.");
             return new ResponseEntity<DefaultApiErrorHelper>(error, HttpStatus.BAD_REQUEST);
+        }
+        if (ex instanceof CustomNotFoundException) {
+            return new ResponseEntity<>(error, HttpStatus.NOT_FOUND);
         }
         return new ResponseEntity<DefaultApiErrorHelper>(error, HttpStatus.INTERNAL_SERVER_ERROR);
     }
