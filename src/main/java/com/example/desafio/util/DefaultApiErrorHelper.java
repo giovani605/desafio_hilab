@@ -7,10 +7,9 @@ import lombok.Data;
 @AllArgsConstructor
 public class DefaultApiErrorHelper {
 
-    private String mensagem;
+    private String message;
 
     private Integer statusCode;
 
     private String statusCodeType;
-
 }

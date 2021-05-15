@@ -13,15 +13,16 @@ import lombok.Data;
 @Document(collection = "person")
 public class Person implements Serializable {
 
-    /**
-     *
-     */
     private static final long serialVersionUID = -7105409970622558954L;
 
     @Id
     private String id;
 
-    private boolean status;
+    public enum PersonStatus {
+        ACTIVE, INACTIVE
+    }
+
+    private PersonStatus status;
 
     private String givenName;
 
