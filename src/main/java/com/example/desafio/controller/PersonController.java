@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import io.swagger.annotations.ApiOperation;
+
 @RestController
 @RequestMapping("/person")
 class PersonController {
@@ -39,6 +41,7 @@ class PersonController {
     }
 
     @PostMapping
+    @ApiOperation(value = "Add/Edit a person on database", notes = "For validantion porpuses, is necessary to send zipcode as \"99999-999\"  and phone numbers as \"(DD) 99999-9999\"")
     public ResponseEntity<Person> create(@RequestBody Person item) throws Exception {
         Person savedItem = personService.save(item);
         return new ResponseEntity<>(savedItem, HttpStatus.CREATED);
